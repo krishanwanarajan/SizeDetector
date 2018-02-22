@@ -18,6 +18,7 @@
 		D144F47C1FEC0080007FA1A2 /* testUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144F47B1FEC0080007FA1A2 /* testUITests.swift */; };
 		D144F48A1FEC00CB007FA1A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D144F4891FEC00CB007FA1A2 /* GoogleService-Info.plist */; };
 		D15567E2202031840073415A /* CoreAppData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D15567E0202031840073415A /* CoreAppData.xcdatamodeld */; };
+		D15567E4203547910073415A /* DataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15567E3203547910073415A /* DataObjects.swift */; };
 		D16D951320198C5A00051EE5 /* ParseFireBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16D951220198C5A00051EE5 /* ParseFireBase.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		D144F47D1FEC0080007FA1A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D144F4891FEC00CB007FA1A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D15567E1202031840073415A /* CoreAppData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreAppData.xcdatamodel; sourceTree = "<group>"; };
+		D15567E3203547910073415A /* DataObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataObjects.swift; sourceTree = "<group>"; };
 		D16D951220198C5A00051EE5 /* ParseFireBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseFireBase.swift; sourceTree = "<group>"; };
 		E32E70165FDCBDFBD1A48BC5 /* libPods-test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 				D144F45A1FEC0080007FA1A2 /* ViewController.swift */,
 				D15567E0202031840073415A /* CoreAppData.xcdatamodeld */,
 				D16D951220198C5A00051EE5 /* ParseFireBase.swift */,
+				D15567E3203547910073415A /* DataObjects.swift */,
 				D144F45C1FEC0080007FA1A2 /* Main.storyboard */,
 				D144F4621FEC0080007FA1A2 /* Assets.xcassets */,
 				D144F4641FEC0080007FA1A2 /* LaunchScreen.storyboard */,
@@ -354,6 +357,7 @@
 				D144F4591FEC0080007FA1A2 /* AppDelegate.swift in Sources */,
 				D16D951320198C5A00051EE5 /* ParseFireBase.swift in Sources */,
 				D144F4611FEC0080007FA1A2 /* test.xcdatamodeld in Sources */,
+				D15567E4203547910073415A /* DataObjects.swift in Sources */,
 				D15567E2202031840073415A /* CoreAppData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

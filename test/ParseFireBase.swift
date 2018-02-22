@@ -8,10 +8,17 @@
 
 import Foundation
 import UIKit
+//import Firebase
+//import FirebaseDatabase
 
 
 public class parseFirebase {
 
+//    var ref:DatabaseReference?
+//    var databasehandle:DatabaseHandle?
+    
+    
+    
     //This function will print out the data that is currently stored in the database
     func printCurrentData(stores: [String], sizes: [String]) -> String{
         
@@ -32,6 +39,17 @@ public class parseFirebase {
         return dataString
         
     }
+    
+//    func printStoreSizeData(size: String){
+//
+//        ref = Database.database().reference()
+//
+//
+//        return storeAndSize
+//
+//
+//
+//    }
     
 }
 

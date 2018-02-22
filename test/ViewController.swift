@@ -23,46 +23,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var storeNames = [String]()
     var clothingSizes = [String]()
     
+    
     let bound = ["Lower", "Upper"]
     
-    let testsize = ["38"]
+    let testsize = Double(44)
     
     var parsedatabase = parseFirebase()
+    var objects = createStoreObject()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableStoresSizes.delegate = self
         tableStoresSizes.dataSource = self
         
         fetchStoreData()
-        
+        //printStoreToSizeData()
 
         //Set the database reference
         ref = Database.database().reference()
-
-            //Gets Clothing Sizes from the Database
-            ref?.observeSingleEvent(of: .value, with: { (snapshot) in
-                for store in self.storeNames {
-                    for child in snapshot.childSnapshot(forPath: "SizeGuide").childSnapshot(forPath: "\(store)").childSnapshot(forPath: "Mens").children{
-                        let snap = child as! DataSnapshot
-                        let SizeKey = snap.key
-
-                        if (self.clothingSizes.contains("\(SizeKey)") ){
-                                    continue
-                                }
-                                else{
-                                    self.clothingSizes.append(SizeKey)
-                                }
-                            }
-                    }
-                   // print(self.clothingSizes)
-                    print(self.parsedatabase.printCurrentData(stores: self.storeNames, sizes: self.clothingSizes))
-                })
         
         }
-
   
     func fetchStoreData() {
         //Set the database reference
@@ -74,8 +56,88 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                             let StoreKey = snap.key
                             self.storeNames.append(StoreKey)
                             self.tableStoresSizes.reloadData()
+                            
                         }
                     })
+        
+        
+        
+        //Gets Clothing Sizes from the Database
+        ref?.observeSingleEvent(of: .value, with: { (snapshot) in
+            for store in self.storeNames {
+                for child in snapshot.childSnapshot(forPath: "SizeGuide").childSnapshot(forPath: "\(store)").childSnapshot(forPath: "Mens").children{
+                    let snap = child as! DataSnapshot
+                    let SizeKey = snap.key
+                    
+                    if (self.clothingSizes.contains("\(SizeKey)") ){
+                        continue
+                    }
+                    else{
+                        self.clothingSizes.append(SizeKey)
+                    }
+                }
+            }
+            print(self.printStoreToSizeData(tempStores: self.storeNames, tempSizes: self.clothingSizes))
+        })
+    
+    }
+    
+    
+    func printStoreToSizeData(tempStores: [String], tempSizes: [String]) -> String {
+        
+        let stores = tempStores
+        let sizes = tempSizes
+        
+        print(stores)
+        
+        ref = Database.database().reference()
+        // Gets Store Names from the Database
+        for store in stores {
+            for size in sizes {
+    
+                ref?.observeSingleEvent(of: .value, with: { (storesize) in
+                    
+                    if storesize.childSnapshot(forPath: "SizeGuide").childSnapshot(forPath: store).childSnapshot(forPath: "Mens").hasChild(size) {
+                        
+                        self.ref?.child("SizeGuide").child(store).child("Mens").child(size).child("Lower").observe(.value, with: { (sizeComparison) in
+                            
+                            let post = sizeComparison.value as! Double
+                            let postInt = post
+        
+                            if self.testsize >= postInt  {
+                                
+                                self.ref?.child("SizeGuide").child(store).child("Mens").child(size).child("Upper").observe(.value, with: { (upperSizeComparison) in
+                                
+                                    let upper = upperSizeComparison.value as! Double
+                                    let upperDouble = upper
+                                    
+                                        if self.testsize <= upperDouble  {
+                                        
+                                            print("The size matches up to \(self.testsize) for the store: \(store), which is the following size \(size)")
+                                            return
+                                        }
+                                        else
+                                        {
+                                            return
+                                        }
+                                })
+                            }
+                            else
+                            {
+                                return
+                            }
+                        })
+                    }
+                    else
+                    {
+                        return
+                    }
+                    
+                })
+            }
+        }
+       return("\(stores)")
+       
     }
   
     
