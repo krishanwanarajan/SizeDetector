@@ -181,26 +181,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func submitSize(_ sender: Any) {
         
-        if storenameAndSize.count > 0 {
-            
-            storenameAndSize.removeAll()
-            tableStoresSizes.reloadData()
-        }
-        
-        print("Test")
-        if let doubleVlaue = Double(sizeTextField.text!){
-            
-            self.testsize = doubleVlaue
-            
-            fetchStoreData()
+        if self.storenameAndSize.count == 0 {
+            print("Submit")
+            if let doubleVlaue = Double(sizeTextField.text!){
+                
+                self.testsize = doubleVlaue
+                
+                fetchStoreData()
+            }
+            else
+            {
+                print("Not a valid number")
+            }
         }
         else
         {
-            print("Not a valid number")
+            return
         }
+    
+    }
+    
+    @IBAction func btnReset(_ sender: Any) {
+        
+        self.clothingSizes.removeAll()
+        self.storeNames.removeAll()
+        self.storenameAndSize.removeAll()
+        tableStoresSizes.reloadData()
+        
+        print(self.storenameAndSize)
         
         
     }
+    
     
 }
 
