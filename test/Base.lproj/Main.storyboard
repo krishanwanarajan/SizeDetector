@@ -24,7 +24,10 @@
                             <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5wB-Rg-K7w">
                                 <rect key="frame" x="146" y="147" width="82" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitSize:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oph-HE-v0c"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rj9-ld-15P">
                                 <rect key="frame" x="139" y="109" width="96" height="30"/>
@@ -64,6 +67,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="sizeTextField" destination="rj9-ld-15P" id="sCs-iD-B09"/>
                         <outlet property="tableStoresSizes" destination="8gI-Lz-vvv" id="BDf-sK-U1J"/>
                     </connections>
                 </viewController>

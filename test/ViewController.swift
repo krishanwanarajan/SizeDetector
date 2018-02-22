@@ -23,13 +23,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var storeNames = [String]()
     var clothingSizes = [String]()
     
+    var storenameAndSize = [String]()
     
     let bound = ["Lower", "Upper"]
     
-    let testsize = Double(44)
+    var testsize = Double()
+    //let testsize = Double(44)
     
     var parsedatabase = parseFirebase()
     var objects = createStoreObject()
+    
+    
     
     
     override func viewDidLoad() {
@@ -38,7 +42,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableStoresSizes.delegate = self
         tableStoresSizes.dataSource = self
         
-        fetchStoreData()
+       
         //printStoreToSizeData()
 
         //Set the database reference
@@ -55,7 +59,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                             let snap = child as! DataSnapshot
                             let StoreKey = snap.key
                             self.storeNames.append(StoreKey)
-                            self.tableStoresSizes.reloadData()
+                           // self.tableStoresSizes.reloadData()
                             
                         }
                     })
@@ -85,6 +89,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func printStoreToSizeData(tempStores: [String], tempSizes: [String]) -> String {
         
+        
+        
         let stores = tempStores
         let sizes = tempSizes
         
@@ -113,7 +119,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                     
                                         if self.testsize <= upperDouble  {
                                         
-                                            print("The size matches up to \(self.testsize) for the store: \(store), which is the following size \(size)")
+                                            let stringSize = "\(store), \(size)"
+                                            
+                                            self.storenameAndSize.append(stringSize)
+                                            print(self.storenameAndSize)
+                                            self.tableStoresSizes.reloadData()
                                             return
                                         }
                                         else
@@ -136,20 +146,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 })
             }
         }
+        
+        storenameAndSize.removeAll()
        return("\(stores)")
        
     }
   
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return storeNames.count
+        return storenameAndSize.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableStoresSizes.dequeueReusableCell(withIdentifier: "cell")
         
-        cell?.textLabel?.text = storeNames[indexPath.row]
+        cell?.textLabel?.text = storenameAndSize[indexPath.row]
         
         return cell!
         
@@ -165,6 +177,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Dispose of any resources that can be recreated.
     }
     
-   
+    @IBOutlet weak var sizeTextField: UITextField!
+    
+    @IBAction func submitSize(_ sender: Any) {
+        
+        if storenameAndSize.count > 0 {
+            
+            storenameAndSize.removeAll()
+            tableStoresSizes.reloadData()
+        }
+        
+        print("Test")
+        if let doubleVlaue = Double(sizeTextField.text!){
+            
+            self.testsize = doubleVlaue
+            
+            fetchStoreData()
+        }
+        else
+        {
+            print("Not a valid number")
+        }
+        
+        
+    }
+    
 }
 
