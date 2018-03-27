@@ -80,6 +80,7 @@
                     <connections>
                         <outlet property="sizeTextField" destination="rj9-ld-15P" id="sCs-iD-B09"/>
                         <outlet property="tableStoresSizes" destination="8gI-Lz-vvv" id="BDf-sK-U1J"/>
+                        <segue destination="cIn-go-N4i" kind="show" identifier="segueStoreBrowser" id="1I5-mO-6Qg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -126,5 +127,66 @@
             </objects>
             <point key="canvasLocation" x="1200.8" y="90.404797601199405"/>
         </scene>
+        <!--Store Browser View Controller-->
+        <scene sceneID="JYf-v1-JfX">
+            <objects>
+                <viewController id="cIn-go-N4i" customClass="StoreBrowserViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NsQ-M5-Yl0"/>
+                        <viewControllerLayoutGuide type="bottom" id="tSW-w4-AuG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zd0-Cb-fk0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Store Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECs-5N-hmD">
+                                <rect key="frame" x="34" y="41" width="306" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Clothing Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqh-VV-Ghm">
+                                <rect key="frame" x="34" y="79" width="306" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejK-4s-0Fq">
+                                <rect key="frame" x="22" y="124" width="337" height="507"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAq-gi-Zvx">
+                                <rect key="frame" x="53" y="28" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonToMain:" destination="cIn-go-N4i" eventType="touchUpInside" id="RZc-vB-iM1"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="GDc-of-HCu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="backButtonToMain" destination="QAq-gi-Zvx" id="B73-qN-IjT"/>
+                        <outlet property="sizeLabel" destination="pqh-VV-Ghm" id="UJO-WM-sl5"/>
+                        <outlet property="storeBrowserWebView" destination="ejK-4s-0Fq" id="APL-ko-WEw"/>
+                        <outlet property="storeLabel" destination="ECs-5N-hmD" id="qI7-rP-Qpz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7aI-h0-k9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="628" y="799.2503748125938"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="GDc-of-HCu"/>
+    </inferredMetricsTieBreakers>
 </document>

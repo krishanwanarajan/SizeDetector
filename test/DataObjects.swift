@@ -6,17 +6,17 @@
 //  Copyright © 2018 KrishanWanarajan. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-public class createStoreObject {
-    
-    
-    class sizeObject {
+class storeObject {
+
+        var storeName: String
+        var size: String
+
+    init(storeName: String, size: String) {
         
-        var storeName: String?
-        var availableClothingSizes = [String]()
+        self.storeName = storeName
+        self.size = size
         
     }
-    
-    
 }

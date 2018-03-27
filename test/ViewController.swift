@@ -31,8 +31,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //let testsize = Double(44)
     
     var parsedatabase = parseFirebase()
-    var objects = createStoreObject()
+   // var objects = createStoreObject()
     
+    var myIndex = 0
+    
+    var storeObjects = [storeObject]()
     
     
     
@@ -89,8 +92,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func printStoreToSizeData(tempStores: [String], tempSizes: [String]) -> String {
         
-        
-        
         let stores = tempStores
         let sizes = tempSizes
         
@@ -120,6 +121,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                         if self.testsize <= upperDouble  {
                                         
                                             let stringSize = "\(store), \(size)"
+                                            
+                                            
+                                            
+                                            let store = storeObject(storeName: "\(store)", size: "\(size)")
+                                            self.storeObjects.append(store)
                                             
                                             self.storenameAndSize.append(stringSize)
                                             print(self.storenameAndSize)
@@ -171,6 +177,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         printDataToConsole()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //let selectedIndex = indexPath.row
+        //storeObjects = indexPath.row
+        performSegue(withIdentifier: "segueStoreBrowser", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? StoreBrowserViewController{
+            
+            destination.storeObject = storeObjects[(tableStoresSizes.indexPathForSelectedRow?.row)!]
+            //destination.storeobject =
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -198,6 +221,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         {
             return
         }
+        
+        self.view.endEditing(true)
     
     }
     
