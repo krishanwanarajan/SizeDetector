@@ -74,7 +74,7 @@ class SecondViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {return}
         
         if #available(iOS 11.0, *) {
-            guard let model = try? VNCoreMLModel(for: Resnet50().model) else {return}
+            guard let model = try? VNCoreMLModel(for: SizeLengthClassifier().model) else {return}
             
             let request = VNCoreMLRequest(model: model) { (finishedReq, err) in
                 
